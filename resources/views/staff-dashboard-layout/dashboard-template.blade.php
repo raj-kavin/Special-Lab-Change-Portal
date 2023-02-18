@@ -23,13 +23,13 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" >
 
     <!-- Page Wrapper -->
-    <div id="wrapper">
+    <div id="wrapper" style="background-color: var(--primary);" >
 
                 <!-- Sidebar -->
-                <ul class="navbar-nav bg-gradient-primary  sidebar sidebar-dark accordion" id="accordionSidebar">
+                <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
 
                     <!-- Sidebar - Brand -->
                     <a class="sidebar-brand d-flex align-items-center justify-content-center">
@@ -48,12 +48,7 @@
                             <i class="fas fa-fw fa-home"></i>
                             <span>Homepage</span></a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/view-my-leave-history-of-staff-account">
-                            <i class="fas fa-fw fa-calculator"></i>
-                            <span>My Leave History</span></a>
-                    </li>
+                   
 
                     <li class="nav-item">
                         <a class="nav-link" href="/view-settings-index-of-staff-account">
@@ -131,7 +126,7 @@
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span style="color: gray; font-size: 16px;">
-                            &copy; Copyright <b><i>Hypertext_Assasins</i></b> | All rights reserved | Co-created by
+                            &copy; Copyright <b><i>Alpha</i></b> | All rights reserved | Co-created by
                             <a style="color:#56509f; font-weight:bold;" href="https://www.bitsathy.ac.in"
                                 target="_blank">BIT Team</a>
                         </span>

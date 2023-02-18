@@ -46,7 +46,7 @@
     <div class="card">
         <div class="card-body">
 
-            <h3 class="panel-title" style="text-align:center;">Leave Logs</h3>
+            <h3 class="panel-title" style="text-align:center;">History</h3>
             <br>
 
             <form action="/filter-search-leave-history-controller" method="POST">
@@ -69,21 +69,18 @@
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="type_of_leave">Type of Leave</label>
+                        <label for="Special_Lab_Name">Special Lab Name</label>
 
-                        <select class="form-control" name="type_of_leave" id="type_of_leave"
+                        <select class="form-control" name="Special_Lab_Name" id="Special_Lab_Name"
                             aria-label="Default select example" required>
 
                             <option value="All" selected>All</option>
-                            <option value="Sick leave">Sick leave</option>
-                            <option value="Casual leave">Casual leave</option>
-                            <option value="Duty Leave">Onduty Leave</option>
-                            {{-- <option value="Maternity leave">Maternity leave</option>
-                <option value="Paternity leave">Paternity leave</option>
-                <option value="Bereavement leave">Bereavement leave</option>
-                <option value="Compensatory leave">Compensatory leave</option>
-                <option value="Sabbatical leave">Sabbatical leave</option>
-                <option value="Unpaid Leave">Unpaid Leave</option> --}}
+                            <option value="Cloud Computing">Cloud Computing</option>
+                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Blockchain">Blockchain</option>
+                            <option value="Cyber Security">Cyber Security</option>
+
 
                         </select>
                     </div>
@@ -91,7 +88,7 @@
                     <div class="col-md-4 mb-3">
                         <label for="year">Year</label>
 
-                        <input type="text" class="form-control" name="year" id="datepicker"  placeholder="eg.'2022'"/>
+                        <input type="text" class="form-control" name="year" id="datepicker" placeholder="eg.'2022'" />
 
                         {{-- <select class="form-control" name = "year" id="year" aria-label="Default select example" required>
 
@@ -246,9 +243,9 @@
 
     <div class="card">
         <div class="card-body">
-            <h3 class="panel-title" style="text-align:center;">My Leave History</h3>
+            <h3 class="panel-title" style="text-align:center;">History List</h3>
 
-            <h4>Number of Leaves: <span style="text-weight:bold; color:blue;">{{ count($leave_data) }}</span> </h4>
+            <h4>Count: <span style="text-weight:bold; color:blue;">{{ count($leave_data) }}</span> </h4>
 
             <hr>
 
@@ -258,24 +255,36 @@
                 <div class="card text-white bg-dark mb-3">
                     @if ($data->approval_status == '[ACCEPTED]')
                         <div class="card-header bg-success">
-                            <strong>From Date: {{ $data->from_date }}  To Date: {{ $data->to_date }} Session: {{ $data->session }}(Accepted)</strong>
+                            Name: <strong>{{ $data->Name }}</strong><br>
+                            Roll_Number: <strong>{{ $data->staff_id }}</strong><br>
+                            Department: <strong>{{ $data->Department }}</strong><br>
+                            Email: <strong>{{ $data->Email }}</strong><br>
+                            Curr_lab: <strong>{{ $data->Curr_lab }}</strong><br>
+                            Curr_code: <strong>{{ $data->Curr_code }}</strong><br>
+                            To_lab: <strong>{{ $data->To_lab }}</strong><br>
+                            To_code: <strong>{{ $data->To_code }}</strong>
                             <i class="float-right" style="font-size:85%;">Request sent on :-
                                 {{ $data->date_of_request }}</i>
                         </div>
                     @elseif($data->approval_status == '[DECLINED]')
                         <div class="card-header bg-danger">
-                            <strong>From Date: {{ $data->from_date }}  To Date: {{ $data->to_date }} Session: {{ $data->session }}(Declined)</strong>
+                            Name: <strong>{{ $data->Name }}</strong><br>
+                            Roll_Number: <strong>{{ $data->staff_id }}</strong><br>
+                            Department: <strong>{{ $data->Department }}</strong><br>
+                            Email: <strong>{{ $data->Email }}</strong><br>
+                            Curr_lab: <strong>{{ $data->Curr_lab }}</strong><br>
+                            Curr_code: <strong>{{ $data->Curr_code }}</strong><br>
+                            To_lab: <strong>{{ $data->To_lab }}</strong><br>
+                            To_code: <strong>{{ $data->To_code }}</strong>
                             <i class="float-right" style="font-size:85%;">Request sent on :-
                                 {{ $data->date_of_request }}</i>
                         </div>
                     @endif
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $data->type_of_leave }}</h5>
-                        <p class="card-text">{{ $data->description }}</p>
-                    </div>
+
                 </div>
             @endforeach
+           {{-- // $('#Curr_lab').val("{{ $filter_options['Curr_lab'] }}"); --}}
 
 
 
@@ -294,12 +303,13 @@
         });
 
 
-        $('#staff_id').val("{{ $filter_options['staff_id'] }}");
-        $('#type_of_leave').val("{{ $filter_options['type_of_leave'] }}");
-        $('#year').val("{{ $filter_options['year'] }}");
-        $('#month').val("{{ $filter_options['month'] }}");
-        $('#status').val("{{ $filter_options['status'] }}");
+    //     $('#staff_id').val("{{ $filter_options['staff_id'] }}");
+    //
+    //     $('#year').val("{{ $filter_options['year'] }}");
+    //     $('#month').val("{{ $filter_options['month'] }}");
+    //     $('#status').val("{{ $filter_options['status'] }}");
 
 
     }
 </script>
+

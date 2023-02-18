@@ -1,4 +1,4 @@
-@extends('admin-dashboard-layout.dashboard-template')
+@extends('lab-head-dashboard-layout.dashboard-template')
 
 @section('dashboard-admin-content')
 
@@ -59,14 +59,18 @@
 
       @foreach ($pending_data as $key => $data)
 
+
+
+
       <div class="card text-white  mb-3" style="background-color:rgb(187,187,233);border-radius: 30px;border:black solid">
         <div class="card-header bg-white " style="color:black;border-radius:30px;border:none">
+
             Name: <strong>{{ $data->Name }}</strong><br>
             Roll_Number: <strong>{{ $data->staff_id }}</strong><br>
             Department: <strong>{{ $data->Department }}</strong><br>
             Curr_lab: <strong>{{ $data->Curr_lab }}</strong><br>
             To_lab: <strong>{{ $data->To_lab }}</strong><br>
-            Reason_For_Change:<strong>{{ $data->Reason_For_Change }}</strong><br>
+            Reason_For_Change: <strong>{{ $data->Reason_For_Change }}</strong><br>
             <i class="float-right" style="font-size:85%;">Request sent on :- {{ $data->date_of_request }}</i>
 
         </div>

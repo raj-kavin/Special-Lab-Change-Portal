@@ -23,6 +23,8 @@ class StaffData extends Migration
               $table->string('email');
               $table->string('phone_number');
             //   $table->string('position');
+            $table->string('updated_at')->nullable();
+            $table->string('created_at')->nullable();
         });
     }
 

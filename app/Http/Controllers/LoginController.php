@@ -12,14 +12,14 @@ class LoginController extends Controller
     public function HandleLoginContoller(Request $request){
 
         $this->validate($request, [
-          'username' => 'required',
-          'password' => 'required',
-          'login_type' => 'required',
+          'username' => 'required|email',
+          'password' => 'required|min:8|',
+          //'login_type' => 'required',
         ]);
 
         $user_entered_username    =    $request->username;
         $user_entered_password    =    $request->password;
-        $user_entered_login_type  =    $request->login_type;
+      //  $user_entered_login_type  =    $request->login_type;
 
 
         $real_staff_id      = "";
@@ -27,7 +27,7 @@ class LoginController extends Controller
         $real_password      = "";
         $real_account_type  = "";
 
-        $user = DB::select( DB::raw("SELECT staff_id,username, password,account_type FROM user_account WHERE username ='$user_entered_username' AND account_type='$user_entered_login_type'"));
+        $user = DB::select( DB::raw("SELECT staff_id,username, password,account_type FROM user_account WHERE username ='$user_entered_username'"));
 
         foreach($user as $u){
 
@@ -52,13 +52,23 @@ class LoginController extends Controller
 
            }else if($real_account_type == "staff"){
 
-             Session::put('Session_Type', 'Staff');
+             Session::put('Session_Type', 'staff');
              Session::put('Session_Value', $real_staff_id);
 
              return Redirect::to("/view-home-page-of-staff-account");
 
 
-           }
+           }else if($real_account_type == "lab_head"){
+
+            Session::put('Session_Type', 'lab_head');
+            Session::put('Session_Value', $real_username);
+
+            return Redirect::to("/view-lab-head-management");
+
+
+          }
+
+
 
         }else{
 
@@ -75,6 +85,7 @@ class LoginController extends Controller
 
        echo $real_password." ".$real_password." ".$real_account_type;
     }
+
 
     public function HandleLogoutContoller(){
 

@@ -47,9 +47,9 @@
 
 @endif
 
-<div class="card">
+<div class="card" style="background-color:rgb(187,187,233);border-radius: 30px;">
     <div class="card-body">
-      <h3 class="panel-title" style="text-align:center;">Create User Accounts</h3>
+      <h3 class="panel-title" style="text-align:center;color:#020202;font-weight:900">Create User Accounts</h3>
       <br>
 
       <form action="/insert-user-accounts" method="POST">
@@ -57,7 +57,7 @@
         {{ csrf_field() }}
 
         <div class="form-group row">
-          <label for="username" class="col-sm-2 col-form-label">Roll No.</label>
+          <label for="username" class="col-sm-2 col-form-label" style="color:#0c0c0c;font-weight:900">Roll No.</label>
           <div class="col-sm-8">
             <select class="form-control" name = "staff_id" id="staff_id" aria-label="Default select example">
 
@@ -71,14 +71,14 @@
         </div>
 
         <div class="form-group row">
-          <label for="username" class="col-sm-2 col-form-label">Username</label>
+          <label for="username" class="col-sm-2 col-form-label" style="color:#0b0b0b;font-weight:900">Username</label>
           <div class="col-sm-8">
             <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" autocomplete="off" required>
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="password" class="col-sm-2 col-form-label">Password</label>
+          <label for="password" class="col-sm-2 col-form-label" style="color:#070707;font-weight:900">Password</label>
           <div class="col-sm-8">
             <input type="text" class="form-control" id="password" name="password" placeholder="Enter password" autocomplete="off" required>
           </div>
@@ -98,7 +98,7 @@
 
 <br>
 
-<div class="card">
+<div class="card" style="background-color:rgb(187,187,233);border-radius: 30px;">
       <div class="card-body" style="overflow: scroll">
 
           <table class="table table-bordered table-hover table-dark">

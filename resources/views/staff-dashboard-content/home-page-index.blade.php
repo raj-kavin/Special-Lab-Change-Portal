@@ -43,44 +43,83 @@
     @endif
 
 
-    <div class="card">
+    <div class="card" style="background-color:rgb(187,187,233);border-radius: 30px;">
         <div class="card-body">
-            <h3 class="panel-title" style="text-align:center;">Requesting for leave</h3>
+            <h3 class="panel-title" style="text-align:center;color:black;font-weight:900">Special lab Changing Form</h3>
             <br>
 
             <form action="/insert-leave-data-of-staff-account" method="POST">
                 {{ csrf_field() }}
 
-                <div class="form-group row">
-                    <label for="type_of_leave" class="col-sm-2 col-form-label">Type of Leave</label>
+                <div class="form-group row" style="gap:30px;">
+                    <label for="Name" class="col-sm-2 col-form-label" style="color:black;font-weight:900">Name</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="type_of_leave" id="type_of_leave"
-                            aria-label="Default select example" required>
-                            <option selected disabled>Select a leave type</option>
-                            <option value="Sick leave">Sick leave</option>
-                            <option value="Casual leave">Casual leave</option>
-                            <option value="Onduty External">Onduty External</option>
-                            <option value="Onduty Internal">Onduty Internal</option>
-              {{-- <option value="Paternity leave">Paternity leave</option>
-              <option value="Bereavement leave">Bereavement leave</option>
-              <option value="Compensatory leave">Compensatory leave</option>
-              <option value="Sabbatical leave">Sabbatical leave</option>
-              <option value="Unpaid Leave">Unpaid Leave</option> --}}
 
-                        </select>
+                        <input class="form-control" name="Name" id="Name"
+                            aria-label="Default select example" required placeholder="Enter Name" autocomplete="off">
+                    </div>
+
+
+
+                    <label for="Department" class="col-sm-2 col-form-label" style="color:black;font-weight:900">Department</label>
+                    <div class="col-sm-8">
+
+                        <input class="form-control" name="Department" id="Department" aria-label="Default select example" required placeholder="Enter Department Name" autocomplete="off">
+                    </div>
+
+
+
+
+                    <label for="Curr_lab" class="col-sm-2 col-form-label" style="color:black;font-weight:900">Curr* Special Lab Name</label>
+                    <div class="col-sm-8">
+
+                        <select class="form-control" name="Curr_lab" id="Curr_lab"
+                        aria-label="Default select example" required>
+
+                        <option value="All" selected>All</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Artificial Intelligence">Artificial Intelligence</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Blockchain">Blockchain</option>
+                        <option value="Cyber Security">Cyber Security</option>
+
+
+                    </select>
+                    </div>
+
+
+                    <label for="To_lab" class="col-sm-2 col-form-label" style="color:black;font-weight:900">To* Special Lab Name</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="To_lab" id="To_lab"
+                        aria-label="Default select example" required>
+
+                        <option value="All" selected>All</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Artificial Intelligence">Artificial Intelligence</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Blockchain">Blockchain</option>
+                        <option value="Cyber Security">Cyber Security</option>
+
+
+                    </select>
+                    </div>
+
+                    <label for="date_of_request" class="col-sm-2 col-form-label" style="color:black;font-weight:900">date_of_request</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="date_of_request" id="date_of_request"
+                            aria-label="Default select example" required type="Date" placeholder="Date" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group row" style="padding-top:20px">
+                    <label for="Reason_For_Change" class="col-sm-2 col-form-label" style="color:black;font-weight:900">Reason For Change</label>
+                    <div class="col-sm-8" style="padding-left:40px" >
+                        <textarea class="form-control" name="Reason_For_Change" id="Reason_For_Change" placeholder="Reason For Change"  required></textarea>
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="description" class="col-sm-2 col-form-label">Description</label>
-                    <div class="col-sm-8">
 
-                        <textarea class="form-control" name="description" id="description" placeholder="Enter the description" required></textarea>
 
-                    </div>
-                </div>
-
-                <div class="form-group row">
+                {{-- <div class="form-group row">
                     <label for="from_date" class="col-sm-2 col-form-label">From Date</label>
                     <div class="col-sm-4">
                         <input type="date" class="form-control" id="from_date" name="from_date" required>
@@ -115,7 +154,7 @@
                             Full Day
                         </label>
                     </div>
-                </div>
+                </div> --}}
                 <br><br>
                 <div class="form-group row">
                     <label style="visibility:hidden;" for="button" class="col-sm-2 col-form-label">button</label>
@@ -133,18 +172,22 @@
 
     <div class="card">
         <div class="card-body">
-            <h3 class="panel-title" style="text-align:center;">My Pending Requests</h3>
+            <h3 class="panel-title" style="text-align:center;color:black;font-weight:900">My Pending Requests</h3>
             <br>
 
-            @foreach ($leave_pending_data as $key => $data)
-                <div class="card text-white bg-dark mb-3">
-                    <div class="card-header bg-dark ">
-                        From Date: <strong>{{ $data->from_date }}</strong><br>To Date:<strong>{{ $data->to_date }}</strong><br>Session: <strong>{{ $data->session }}</strong>
+             @foreach ($leave_pending_data as $key => $data)
+                <div class="card text-white" style="background-color:rgb(187,187,233);border-radius: 30px;border:black solid">
+                    <div class="card-header bg-white" style="color:black;border-radius:30px" >
+                        Name: <strong>{{ $data->Name }}</strong><br>
+                        Roll_Number: <strong>{{ $data->staff_id}}</strong><br>
+                        Department: <strong>{{ $data->Department }}</strong><br>
+                        Curr_lab: <strong>{{ $data->Curr_lab }}</strong><br>
+                        To_lab: <strong>{{ $data->To_lab }}</strong><br>
+                        Reason_For_Change:<strong>{{ $data->Reason_For_Change}}</strong>
                         <i class="float-right" style="font-size:85%;">Request sent on :- {{ $data->date_of_request }}</i>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ $data->type_of_leave }}</h5>
-                        <p class="card-text">{{ $data->description }}</p>
+
                         <a class="btn btn-danger float-right confirmation"
                             href="/delete-leave-pending-request-in-staff-account/{{ $data->auto_id }}">Delete Request</a>
                     </div>

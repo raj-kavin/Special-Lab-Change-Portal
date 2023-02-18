@@ -50,35 +50,35 @@
 
 
 <div class="card">
-    <div class="card-body">
-      <h3 class="panel-title" style="text-align:center;">Change Username</h3>
+    <div class="card-body" style="background-color:rgb(187,187,233);border-radius:30px">
+      <h3 class="panel-title" style="text-align:center;color:black;font-weight:900">Change Username</h3>
       <br>
 
       <form action="/change-username-of-staff-account" method="POST">
         {{ csrf_field() }}
 
         <div class="form-group row">
-          <label for="username" class="col-sm-2 col-form-label">Username</label>
+          <label for="username" class="col-sm-2 col-form-label" style="color:black;font-weight:900">Username</label>
           <div class="col-sm-8">
             <input type="text" class="form-control" id="username" value="{{$staff_data[0]->username}}" name="username" placeholder="Username" required>
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="password" class="col-sm-2 col-form-label">Password</label>
+          <label for="password" class="col-sm-2 col-form-label"  style="color:black;font-weight:900" >Password</label>
           <div class="col-sm-8">
             <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
           </div>
 
           <div class="checkbox col-md-2" style="margin-top:0.6%;">
-              <label>
+              <label style="color:black;font-weight:900">
                 <input type="checkbox" style="width: 0.9rem; height: 0.9rem;" class="form-check-input" id="check1" runat="server"> Show Password
               </label>
           </div>
         </div>
 
         <div class="form-group row">
-          <label style="visibility:hidden;" for="button" class="col-sm-2 col-form-label">button</label>
+          <label style="visibility:hidden;" for="button" class="col-sm-2 col-form-label" >button</label>
           <div class="col-sm-8">
             <input class="btn btn-primary col-md-2 col-sm-12" value="Change" id="button" type="submit">
           </div>
@@ -91,9 +91,9 @@
 
 <br>
 
-<div class="card">
+<div class="card" style="background-color:rgb(187,187,233);border-radius:30px">
     <div class="card-body">
-      <h3 class="panel-title" style="text-align:center;">Change Password</h3>
+      <h3 class="panel-title" style="text-align:center;font-weight:900;color:black">Change Password</h3>
       <br>
 
       <form action="/change-password-of-staff-account" method="POST">
@@ -101,13 +101,13 @@
         {{ csrf_field() }}
 
         <div class="form-group row">
-          <label for="current_password" class="col-sm-2 col-form-label">Current Password</label>
+          <label for="current_password" class="col-sm-2 col-form-label;" style="color:black;font-weight:900">Current Password</label>
           <div class="col-sm-8">
             <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current Password" required>
           </div>
 
           <div class="checkbox col-md-2" style="margin-top:0.6%;">
-              <label>
+              <label style="color:black;font-weight:900">
                 <input type="checkbox" style="width: 0.9rem; height: 0.9rem;" class="form-check-input" id="check2" runat="server"> Show Password
               </label>
           </div>
@@ -115,13 +115,13 @@
         </div>
 
         <div class="form-group row">
-          <label for="new_password" class="col-sm-2 col-form-label">New Password</label>
+          <label for="new_password" class="col-sm-2 col-form-label" style="color:black;font-weight:900">New Password</label>
           <div class="col-sm-8">
             <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New Password" required>
           </div>
 
           <div class="checkbox col-md-2" style="margin-top:0.6%;">
-              <label>
+              <label style="color:black;font-weight:900">
                 <input type="checkbox" style="width: 0.9rem; height: 0.9rem;" class="form-check-input" id="check3" runat="server"> Show Password
               </label>
           </div>
@@ -129,13 +129,13 @@
         </div>
 
         <div class="form-group row">
-          <label for="confirm_password" class="col-sm-2 col-form-label">Confirm Password</label>
+          <label for="confirm_password" class="col-sm-2 col-form-label" style="color:black;font-weight:900">Confirm Password</label>
           <div class="col-sm-8">
             <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
           </div>
 
           <div class="checkbox col-md-2" style="margin-top:0.6%;">
-              <label>
+              <label style="color:black;font-weight:900">
                 <input type="checkbox" style="width: 0.9rem; height: 0.9rem;" class="form-check-input" id="check4" runat="server"> Show Password
               </label>
           </div>
@@ -143,7 +143,7 @@
         </div>
 
         <div class="form-group row">
-          <label style="visibility:hidden;" for="button" class="col-sm-2 col-form-label">button</label>
+          <label style="visibility:hidden;" for="button" class="col-sm-2 col-form-label" style="color:black">button</label>
           <div class="col-sm-8">
             <input class="btn btn-primary col-md-2 col-sm-12" value="Change" id="button" type="submit">
           </div>

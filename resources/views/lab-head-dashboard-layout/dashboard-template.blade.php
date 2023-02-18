@@ -50,25 +50,15 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/view-staff-management-index">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span style="font-weight:900;">Student List</span></a>
+                <a class="nav-link" href="/view-history-page">
+                    <i class="fas fa-fw fa-history" ></i>
+                    <span style="font-weight:900;">History</span></a>
             </li>
-
-
-
             <li class="nav-item">
-                <a class="nav-link" href="/view-user-accounts-index">
-                    <i class="fas fa-fw fa-user" ></i>
-                    <span style="font-weight:900;">Accounts Manage</span></a>
+                <a class="nav-link" href="/">
+                    <i class="fas fa-fw fa-power-off"></i>
+                    <span>Add Special Lab</span></a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/view-settings-index">
-                    <i class="fas fa-fw fa-cog" ></i>
-                    <span style="font-weight:900;">Settings</span></a>
-            </li>
-
             <li class="nav-item">
                 <a class="nav-link" href="/handle-logout">
                     <i class="fas fa-fw fa-power-off" ></i>
@@ -131,7 +121,7 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
+             <!-- Footer -->
             <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">

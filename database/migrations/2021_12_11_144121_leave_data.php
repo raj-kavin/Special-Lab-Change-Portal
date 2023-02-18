@@ -18,13 +18,14 @@ class LeaveData extends Migration
 
         $table->increments('auto_id');
         $table->string('staff_id');
-        $table->string('type_of_leave');
-        $table->string('description',5000);
-        $table->date('from_date');
-        $table->date('to_date');
-        $table->string('session');
-        $table->datetime('date_of_request');
+        $table->string('Name');
+        $table->string('Department');
+        $table->string('Curr_lab');
+        $table->string('To_lab');
+        $table->string('Reason_For_Change');
+        $table->string('date_of_request');
         $table->string('approval_status');
+
 
       });
 

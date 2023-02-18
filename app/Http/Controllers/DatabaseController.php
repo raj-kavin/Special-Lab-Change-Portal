@@ -21,7 +21,7 @@ class DatabaseController extends Controller
         $session_type = Session::get('Session_Type');
         $session_value = Session::get('Session_Value');
 
-        if ($session_type == "Admin") {
+        if ($session_type == "staff") {
 
             $validatedata = $request->validate([
                 'staff_id' => 'required',
@@ -266,29 +266,42 @@ class DatabaseController extends Controller
 
         if ($session_type == "Admin") {
 
-            if ($this->isOnline()) {
+            if (DB::table('leave_data')->where(["auto_id" => $auto_id])->update(['approval_status' => "[LAB_INCHARGE APPROVED]"])) {
+                return redirect()->back()->with('message', 'Accepted');
+            } else {
+
+                return redirect()->back()->with('message', 'No changes made.');
+            }
+        } else if ($session_type == "lab_head") {
+
+            if (DB::table('leave_data')->where(["auto_id" => $auto_id])->update(['approval_status' => "[LAB_HEAD APPROVED]"])) {
 
                 $leavedata = DB::table('leave_data')->where(['auto_id' => $auto_id])->get();
                 $staffid = $leavedata[0]->staff_id;
                 $staffdata = DB::table('staff_data')->where(['staff_id' => $staffid])->get();
                 $mailid = $staffdata[0]->email;
-                //return $mailid;
+                //echo $mailid;
                 $data = [
 
                     "recipient" => $mailid,
-                    "fromemail" => "camps@bitsathy.ac.in",
+                    "fromemail" => "srisathyasai24680@gmail.com",
                     "fromname" => "Camps Site",
-                    "subject" => 'Reg: Leave request',
-                    "body" => '      Your leave request as been accepted'
+                    "subject" => 'Reg: Special Lab',
+                    "body" => 'Your Special Lab Change Has Been Approved
+
+                                For more special lab details, refer our wiki page:
+                                https://wiki.bitsathy.ac.in/wiki/SLABS:Special_labs'
 
                 ];
                 try {
                     Mail::to($mailid)->send(new MailNotify($data));
                 } catch (Exception $th) {
-                    return 'mail not sent';
+                    return $th;
                 }
                 if (DB::table('leave_data')->where(["auto_id" => $auto_id])->update(['approval_status' => "[ACCEPTED]"])) {
                     return redirect()->back()->with('message', 'Accepted');
+
+
                 } else {
 
                     return redirect()->back()->with('message', 'No changes made.');
@@ -301,7 +314,6 @@ class DatabaseController extends Controller
             return Redirect::to("/");
         }
     }
-
     //  public function sendEmail(){
 
     //     if($this->isOnline()){
@@ -332,6 +344,7 @@ class DatabaseController extends Controller
 
     //  }
 
+
     public function isOnline($site = "https://youtube.com/")
     {
         if (@fopen($site, "r")) {
@@ -344,43 +357,56 @@ class DatabaseController extends Controller
     public function DeclineRequest($auto_id)
     {
 
-        $session_type = Session::get('Session_Type');
+         $session_type = Session::get('Session_Type');
         $session_value = Session::get('Session_Value');
 
         if ($session_type == "Admin") {
 
-            if ($this->isOnline()) {
+            if (DB::table('leave_data')->where(["auto_id" => $auto_id])->update(['approval_status' => "[LAB_INCHARGE DECLINED]"])) {
+                return redirect()->back()->with('message', 'Declined');
+            } else {
+
+                return redirect()->back()->with('message', 'No changes made.');
+            }
+        } else if ($session_type == "lab_head") {
+
+            if (DB::table('leave_data')->where(["auto_id" => $auto_id])->update(['approval_status' => "[LAB_HEAD DECLINED]"])) {
 
                 $leavedata = DB::table('leave_data')->where(['auto_id' => $auto_id])->get();
                 $staffid = $leavedata[0]->staff_id;
                 $staffdata = DB::table('staff_data')->where(['staff_id' => $staffid])->get();
                 $mailid = $staffdata[0]->email;
-                //return $mailid;
+                //echo $mailid;
                 $data = [
 
                     "recipient" => $mailid,
                     "fromemail" => "srisathyasai24680@gmail.com",
                     "fromname" => "Camps Site",
-                    "subject" => 'Reg: Leave request',
-                    "body" => '         Your leave request has been declined'
+                    "subject" => 'Reg: Special Lab',
+                    "body" => 'Your Special Lab Change Request Has Been Declined
+
+                                For more special lab details, refer our wiki page:
+                                https://wiki.bitsathy.ac.in/wiki/SLABS:Special_labs'
 
                 ];
                 try {
                     Mail::to($mailid)->send(new MailNotify($data));
                 } catch (Exception $th) {
-                    return 'mail not sent';
+                    return $th;
                 }
-                    if (DB::table('leave_data')->where(["auto_id" => $auto_id])->update(['approval_status' => "[DECLINED]"])) {
-                        return redirect()->back()->with('message', 'Declined');
-                    } else {
+                if (DB::table('leave_data')->where(["auto_id" => $auto_id])->update(['approval_status' => "[DECLINED]"])) {
+                    return redirect()->back()->with('message', 'Declined');
 
-                        return Redirect::to("/");
-                    }
+                } else {
+
+                    return redirect()->back()->with('message', 'No changes made.');
+                }
             } else {
                 return "No internet connection";
             }
-        }else{
-            return redirect()->back()->with('message', 'No changes made.');
+        } else {
+
+            return Redirect::to("/");
         }
     }
 
@@ -390,7 +416,7 @@ class DatabaseController extends Controller
         $session_type = Session::get('Session_Type');
         $session_value = Session::get('Session_Value');
 
-        if ($session_type == "Staff") {
+        if ($session_type == "staff") {
 
             $staff_data = DB::table('user_account')->where(["account_type" => "staff", "staff_id" => $session_value])->get(); // Get staff data.
 
@@ -419,7 +445,7 @@ class DatabaseController extends Controller
         $session_type = Session::get('Session_Type');
         $session_value = Session::get('Session_Value');
 
-        if ($session_type == "Staff") {
+        if ($session_type == "staff") {
 
             $staff_data = DB::table('user_account')->where(["account_type" => "staff", "staff_id" => $session_value])->get(); // Get staff data.
 
@@ -455,30 +481,32 @@ class DatabaseController extends Controller
         $session_type = Session::get('Session_Type');
         $session_value = Session::get('Session_Value');
 
-        if ($session_type == "Staff") {
+        if ($session_type == "staff") {
 
             $validatedata = $request->validate([
 
-                'type_of_leave' => 'required',
-                'description' => 'required',
-                'from_date' => 'required|date',
-                'to_date' => 'required|date|after_or_equal:from_date',
-                'session' => 'required',
+                'Name' => 'required',
+                'Department' => 'required',
+                'Curr_lab' => 'required',
+                'To_lab' => 'required',
+                'date_of_request' => 'required',
+                'Reason_For_Change' => 'required|max:200',
             ]);
 
+
+            $Name              =  $request->Name;
             $staff_id          =  $session_value;
-            $type_of_leave     =  $request->type_of_leave;
-            $description       =  $request->description;
-            $from_date         =  $request->from_date;
-            $to_date           =  $request->to_date;
-            $session           =  $request->session;
-            $date_of_request   =  date('Y-m-d H:i:s');
+            $Department        =  $request->Department;
+            $Curr_lab          =  $request->Curr_lab;
+            $To_lab            =  $request->To_lab;
+            $Reason_For_Change =  $request->Reason_For_Change;
+            $date_of_request   =  $request->date_of_request;
             $approval_status      =  "[PENDING]";
 
 
-            if (DB::insert('INSERT INTO leave_data (staff_id, type_of_leave, description, from_date, to_date, session,  date_of_request, approval_status ) values (?, ?, ?, ?, ?, ?,?,?)', [$staff_id, $type_of_leave, $description, $from_date, $to_date, $session, $date_of_request, $approval_status])) {
+            if (DB::insert('INSERT INTO leave_data ("staff_id", "Name", "Department", "Curr_lab", "To_lab", "Reason_For_Change", "date_of_request", "approval_status" ) values (?, ?, ?, ?, ?, ?,?,?)', [$staff_id, $Name, $Department, $Curr_lab, $To_lab, $Reason_For_Change, $date_of_request, $approval_status])) {
 
-                return redirect()->back()->with('message', 'Leave request has been submited successfully.');
+                return redirect()->back()->with('message', 'Special Lab change form submitted Successfully ');
             }
         }
     }
@@ -488,7 +516,7 @@ class DatabaseController extends Controller
 
         $session_type = Session::get('Session_Type');
 
-        if ($session_type == "Staff") {
+        if ($session_type == "staff") {
 
             if (DB::table('leave_data')->where('auto_id', '=', $auto_id)->delete()) {
 
